@@ -40,6 +40,11 @@ use the following command (*remember, this is only for testing or "benchmarking"
 
     bsub -W 00:30 -n 16 -R "span[ptile=16]" mpirun -np 1 -pernode ./thread_test 16
 
+or we can submit with bind to none (usually works, somehow):
+
+     bsub -W 00:30 -n 16 -R "span[ptile=16]" mpirun --bind-to-none -np 1 -pernode ./thread_test 16
+
+
 ## Running on LSF cluster (without MPI):
 This usually works fine:
 
@@ -77,6 +82,16 @@ Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to 
     Ticks used: 174010000
     Clock time used (s): 174
     Sum = 36.1827
+    
+## Example of INCORRECT results
+
+Anything where the runtime is not affected by the number of threads use, eg the following is NOT CORRECT:
+
+    Using NUM_THREADS = 12
+    Time used: 153
+    Ticks used: 153230000
+    Clock time used (s): 153
+    Sum = 36.3002
 
 
 ## Building and running on Euler cluster
@@ -109,6 +124,10 @@ Try first with MPI (this will not give expected results):
 then without (will give expected results):
 
      bsub -W 00:30 -n 16  ./thread_test 16
+
+we can also add the --bind-to-none option to mpirun, and things will magically work:
+
+     bsub -W 00:30 -n 16 -R "span[ptile=16]" mpirun --bind-to-none -np 1 -pernode ./thread_test 16
 
   
    
