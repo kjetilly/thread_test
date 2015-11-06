@@ -10,7 +10,7 @@
 
 int main(int argc, char** argv) {
   const int NUM_THREADS = atoi(argv[1]);
-
+  std::cout << "Using NUM_THREADS = " << NUM_THREADS << std::endl;
   srand(time(NULL));
   const int M = 32;
   std::vector<double> u(M);
