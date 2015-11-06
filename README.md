@@ -63,12 +63,15 @@ This usually works fine:
 
 Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to be equal):
 
+16 threads:
+
     Using NUM_THREADS = 16
     Time used: 16
     Ticks used: 171140000
     Clock time used (s): 171
     Sum = 35.5088
    
+8 threads:
 
     Using NUM_THREADS = 8
     Time used: 22
@@ -76,6 +79,7 @@ Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to 
     Clock time used (s): 173
     Sum = 36.0766
 
+24 threads:
 
     Using NUM_THREADS = 24
     Time used: 12
