@@ -77,6 +77,16 @@ Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to 
     Ticks used: 174010000
     Clock time used (s): 174
     Sum = 36.1827
+    
+## Example of INCORRECT results
+
+Anything where the runtime is not affected by the number of threads use, eg the following is NOT CORRECT:
+
+    Using NUM_THREADS = 12
+    Time used: 153
+    Ticks used: 153230000
+    Clock time used (s): 153
+    Sum = 36.3002
 
 
 ## Building and running on Euler cluster
