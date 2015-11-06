@@ -48,8 +48,11 @@ This usually works fine:
 ## Expected results
 
 * We expect that using multiple threads will be faster than using one thread
+* If NUM_THREADS > 1, we do not expect "Clock time used" and "Time used" to be equal (or close).
+* We should get the same result running through MPI with a single process, and running the same single process directly.
 * We expect that (very) roughly 
-    Clock time used = NUM_THREADS * Time used
+
+     Clock time used = NUM_THREADS * Time used
 
 ## Example output of working configuration 
 
@@ -99,11 +102,11 @@ Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to 
 
 ### Submitting:
 
-Try first with MPI:
+Try first with MPI (this will not give expected results):
 
     bsub -W 00:30 -n 16 -R "span[ptile=16]" mpirun -np 1 -pernode ./thread_test 16
 
-then without (usually works fine):
+then without (will give expected results):
 
      bsub -W 00:30 -n 16  ./thread_test 16
 
