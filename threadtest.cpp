@@ -9,6 +9,14 @@
 #include <algorithm>
 
 int main(int argc, char** argv) {
+  if (argc != 2) {
+    std::cout << "Wrong number of arguments supplied." << std::endl;
+    std::cout << "Usage:\n\t" << argv[0] << " <number of threads to use>" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Example:\n\t" << argv[0] << " 16" << std::endl;
+    return EXIT_FAILURE;
+  }
+
   const int NUM_THREADS = atoi(argv[1]);
   std::cout << "Using NUM_THREADS = " << NUM_THREADS << std::endl;
   srand(time(NULL));
