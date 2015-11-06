@@ -112,3 +112,21 @@ then without (will give expected results):
 
   
    
+## Testing with Python / mpi4py
+
+There is also a simple python program available that closely resembles real life use of mpi4py with C++.
+
+The test program uses mpi4py and executes (as a binary executable) the generated C++ file. 
+
+To submit it, use the following comand
+
+     bsub -W 00:30 -n <T*N> -R "span[ptile=T]" mpirun --bind-to-none -pernode -np N python2.7 ../python_mpi.py <T>
+
+where N is the number of nodes and T is the number of threads. Eg:
+
+     bsub -W 00:30 -n 48 -R "span[ptile=48]" mpirun --bind-to-none -pernode -np 2 python2.7 ../python_mpi.py 48
+
+The sole purpose of this test program is to make sure we can intermingle C++ binaries and Python in this way.
+
+
+
