@@ -63,12 +63,15 @@ This usually works fine:
 
 Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to be equal):
 
+16 threads:
+
     Using NUM_THREADS = 16
     Time used: 16
     Ticks used: 171140000
     Clock time used (s): 171
     Sum = 35.5088
    
+8 threads:
 
     Using NUM_THREADS = 8
     Time used: 22
@@ -76,6 +79,7 @@ Done on Euler cluster 2015-11-06 (*without* MPI) (we do *not* expect the sum to 
     Clock time used (s): 173
     Sum = 36.0766
 
+24 threads:
 
     Using NUM_THREADS = 24
     Time used: 12
@@ -133,11 +137,11 @@ we can also add the --bind-to-none option to mpirun, and things will magically w
    
 ## Testing with Python / mpi4py
 
-There is also a simple python program available that closely resembles real life use of mpi4py with C++.
+There is also a simple python program available that closely resembles real life use of mpi4py in Python calling a C++ executable. This test more closely resemble the simulation we actually do. 
 
-The test program uses mpi4py and executes (as a binary executable) the generated C++ file. 
+The test program uses mpi4py and executes (as a binary executable) the generated C++ program. 
 
-To submit it, use the following comand
+To submit it, use the following comand (without --bind-to-none we do not get the expected speed up) *RUN FROM BUILD DIRECTORY*:
 
      bsub -W 00:30 -n <T*N> -R "span[ptile=T]" mpirun --bind-to-none -pernode -np N python2.7 ../python_mpi.py <T>
 
@@ -145,7 +149,7 @@ where N is the number of nodes and T is the number of threads. Eg:
 
      bsub -W 00:30 -n 48 -R "span[ptile=48]" mpirun --bind-to-none -pernode -np 2 python2.7 ../python_mpi.py 48
 
-The sole purpose of this test program is to make sure we can intermingle C++ binaries and Python in this way.
+The sole purpose of this test program is to make sure we can intermingle C++ binaries and Python in this way. 
 
 
 
